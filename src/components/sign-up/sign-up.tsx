@@ -15,7 +15,7 @@ export const SignUp = ({ setSignUpPopUp, setLoginPopUp, setIsLoggedIn }: SignUpP
     const [formData, setFormData] = useState({
         walletAddress: '',
         relayUrl: 'test.icorepay.io/v1',
-        JWTkey: '',
+        key: 'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODk2ODQ0NTcsImF1ZCI6InRlc3QiLCJpc3MiOiJ0ZXN0Lmljb3JlcGF5LmlvIiwic3ViIjoiQUVCQURhZE1WSmlKOCt1SzZYNS9WRXBjS1lySXdjQ1R3VUc3Q3d2aWRlcTRjdW1KSU9ZdGRlWnBzMG1ITzdhRWRzRDFUMjFSVTROS0RyeVBLbFVuQktIcFdEQldNQkFHQnlxR1NNNDlBZ0VHQlN1QkJBQUtBMElBQkZnT1djSUR6TlJ2SGJmWFlhYnFxdXhReFpVYkVnM25IRmxIamZWRTk2UFMxelBneXRveUZHcExzbVg5ZXFrTDRlNnIrSmFWWXhoWXV4c2V0andKWEQ4QkFBQUFBQUFBQUFBQUFFQlBsd0xlaEVlZTJoVFJRRk1MdmJ2enphOFdkbXkyNWlSelJocmxka3pPZHVBNEtPeW1KVjc2c0h1T2JFWlgvYVdyOHFCbWRLSmJUMFdCUmIrWXlwWjFXREJXTUJBR0J5cUdTTTQ5QWdFR0JTdUJCQUFLQTBJQUJGZUo0U3VtTHZ6YTZQSFB1MUVka3pOVnRmaWFiTHlOaWVsbkNnTTFVK1E3d2FsK3Q5eFg1OWRhNHdzVWFPUzcwbjFRTjNLU1ZlQUdWc2lRQmFGdTh3Y0JBQUFBQUFBQUFBTHVBRUJYQkNrN1FHQWN1SUF1VXNhTnp1YjI4Y3BLbzVINWpJTlljRFJMTy9mMFNsMUVtWXVOWm1YZkJSN0hWNnJkZ1FwTUR3MW5FVTB1TmxrWlJhcmxFRCtjV0RCV01CQUdCeXFHU000OUFnRUdCU3VCQkFBS0EwSUFCQ1FSVE9PV1BPNnVKRXBQYWFEV0RKV3ZFMGtCVEYxNnAxOTZIU28vdUVsbThBYVd0YXVGYnpzMFh4V0JxajNkd1diRXZIMWZzNVY2WWFPZDJxRTQ5UVlCQUFBQUFBQUFBQUFqQUVBUmNQcE9DZVNRSnpNNkpzakw0VE04UFEzTXZhek9TQ2w2aWZtUFFYd3k0UmtDNEU4SEFVSW9CYWIxektNZThWZ1ZwOHJMdWxIMXVMRDd3aFNiRTJvRldEQldNQkFHQnlxR1NNNDlBZ0VHQlN1QkJBQUtBMElBQk9VaG1iWDJnVnFzZXA0RVpLeXNxdTRZeXhwc2FjVTVhSzJtMVp3eldxZzhiQ2txdFhzYkhPc1gvQjR3WDdPWWFQOWNveUYvTHZHMDZnQ2ZtUDlqcGZJQkFBQUFBQUFBQUFBUCJ9.p1tUOokKS-kG-gxzwMkaafDvL2H-MdD8fvVlAMSiHiZmRxMeFTyORrK7HCM2NIv2zfLvpX4oZ3YvjNQLHAlkTA',
         email: '',
         password: '',
         confirmPassword: '',
@@ -165,7 +165,7 @@ export const SignUp = ({ setSignUpPopUp, setLoginPopUp, setIsLoggedIn }: SignUpP
                                 <input
                                     type="text"
                                     name="JWTkey"
-                                    value={formData.JWTkey}
+                                    value={formData.key}
                                     onChange={handleChange}
                                     placeholder="Key"
                                 />
@@ -200,7 +200,7 @@ export const SignUp = ({ setSignUpPopUp, setLoginPopUp, setIsLoggedIn }: SignUpP
                             <p>Email: {formData.email}</p>
                             <p>Wallet: {formData.walletAddress}</p>
                             <p>Relay: {formData.relayUrl}</p>
-                            <p>Key: {formData.JWTkey}</p>
+                            <p>Key: {formData.key}</p>
                             <div className={styles.buttonWrapper}>
                                 <button
                                     onClick={prevStep}
