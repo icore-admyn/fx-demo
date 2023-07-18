@@ -11,6 +11,7 @@ export interface CheckoutProps {
 export const Checkout = ({ setCheckoutPopUp, url }: CheckoutProps) => {
     function HandlePopUp() {
         setCheckoutPopUp(false);
+        window.location.reload()
     }
 
     const paymentId: any = url.split('/').pop();
