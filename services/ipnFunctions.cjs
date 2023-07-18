@@ -1,7 +1,7 @@
-const sendUpdate = async (transactionUpdate) => {
-    const response = await axios.post('http://52.90.89.221:5372/transaction/update', transactionUpdate, {
+const sendUpdate = async (paymentId, user) => {
+    const response = await axios.post('http://3.87.213.174:5372//transaction/update', { paymentId: paymentId, status: 'paid' }, {
         headers: {
-            Authorization: `Bearer ${JWT}`,
+            Authorization: `Bearer ${user.key}`,
         },
     });
     console.log('Transaction update response:', response.data);

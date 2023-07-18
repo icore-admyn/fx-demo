@@ -1,5 +1,6 @@
 const { findInvoice, updateInvoice } = require('../services/balanceFunctions.cjs')
-const { updateUserBalance, } = require('../services/userFunctions.cjs')
+const { findUser, updateUserBalance } = require('../services/userFunctions.cjs')
+const { sendUpdate } = require('../services/ipnFunctions.cjs')
 
 async function ipn(req, res) {
     try {
@@ -9,7 +10,8 @@ async function ipn(req, res) {
         const invoice = await findInvoice(paymentId);
         const amount = invoice.amount;
         const bonus = invoice.bonus;
-        const user = invoice.user;
+        const email = invoice.user;
+        const user = await findUser(email)
 
         // Decode blockchain data
 
@@ -17,9 +19,10 @@ async function ipn(req, res) {
 
         // Update invoice databse and user balance
         updateInvoice(paymentId)
-        updateUserBalance(user, amount, bonus)
+        updateUserBalance(email, amount, bonus)
 
         // Send success status
+        sendUpdate(paymentId, user)
         console.log('IPN processed successfully');
         res.status(200).send('IPN recieved');
     } catch (error) {
