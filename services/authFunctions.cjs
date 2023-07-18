@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { usersDB } = require('../models/database.cjs');
 require('dotenv').config()
 
 // Generate secrete auth token 

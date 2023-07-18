@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 const { decodeSubjectChain, calculateNet } = require('relay-jwt');
 const jwa = require('jwa');
+const { invoiceDB } = require('../models/database.cjs');
 require('dotenv').config()
+
 
 // create jwa object
 const algorithm = 'ES256';
@@ -66,8 +68,31 @@ const newParams = async (relayUrl, walletAddress, amount, share) => {
   return `https://${relayUrl}?${queryParams}`;
 };
 
+// Insert user into database
+const insertInvoice = async (invoice) => {
+  try {
+      invoiceDB.insert(invoice);
+      return ({ status: true });
+  } catch (err) {
+      return ({ status: false, error: err });
+  }
+};
+
+const findInvoice = async (paymentId) => {
+  const invoice = invoiceDB.findOne({ paymentId });
+  return invoice;
+}
+
+const updateInvoice = async (paymentId) => {
+  invoiceDB.update({ invoice: paymentId }, { $set: { status: 'paid' } }, { upsert: false });
+  console.log(`Invoice status updated for payment ID: ${paymentId}`);
+}
+
 module.exports = {
   feeShifting,
   splitAmounts,
-  newParams
+  newParams,
+  insertInvoice,
+  findInvoice,
+  updateInvoice
 };

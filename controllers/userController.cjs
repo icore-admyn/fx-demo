@@ -1,4 +1,4 @@
-const { newParams, splitAmounts, feeShifting } = require('../services/balanceFunctions.cjs')
+const { newParams, splitAmounts, feeShifting, insertInvoice } = require('../services/balanceFunctions.cjs')
 const { findUser, updateUser } = require('../services/userFunctions.cjs')
 const axios = require('axios');
 
@@ -36,7 +36,7 @@ const deposit = async (req, res) => {
         const arrayAmount = await splitAmounts(user.settings.walletAddress, shiftedAmount, user.settings.share);
         const url = await newParams(user.settings.relayUrl, user.settings.walletAddress, arrayAmount, user.settings.share)
         console.log(amount, shiftedAmount, arrayAmount)
-        
+
         // Create auth headers if key is present
         const headers = {};
         if (key !== undefined) { headers.authorization = `Bearer ${key}` }
@@ -46,6 +46,13 @@ const deposit = async (req, res) => {
         const invoice = response.data;
         invoice.amount = amount;
         invoice.user = req.email;
+
+        // Insert invoice into database
+        const insert = await insertInvoice(invoice);
+        if (!insert.status) {
+            console.log(insert.error)
+            return res.status(500).json({ error: insert.error });
+        }
 
         // Redirect user to checkout
         const payUrl = invoice.paymentUrl;
