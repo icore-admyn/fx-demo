@@ -48,7 +48,7 @@ const newParams = async (relayUrl, walletAddress, amount, originalAmount) => {
     order_key: customOrderId,
     merchant_addr: walletAddress,
     amount: amount,
-    success_url: process.env.URL + '/ipn/success?amount=' + amount,
+    success_url: process.env.URL + '/ipn/success?amount=' + originalAmount,
     cancel_url: process.env.URL + '/ipn/error',
     ipn_url: process.env.URL + '/ipn',
     return_json: true,
