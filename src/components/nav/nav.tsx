@@ -1,5 +1,5 @@
 import styles from './nav.module.scss';
-import globalStyles from '../../css/Global.module.scss';
+import globalStyles from '../../css/global.module.scss';
 import Logo from '../../assets/svgs/logo.svg';
 import User from '../../assets/svgs/user.svg'
 import Currency from '../../assets/svgs/dollar.svg'
