@@ -1,0 +1,21 @@
+.popUp {
+  max-width: 480px;
+  max-height: 80vh;
+  padding: 0px !important;
+}
+.formHeading {
+  text-transform: uppercase;
+}
+.buttonWrapper {
+  display: flex;
+  justify-items: stretch;
+  justify-content: space-between;
+  margin-top: 0px;
+  padding-top: 12px;
+}
+.form {
+  padding: 40px;
+  overflow-y: auto;
+  max-height: 100%;
+  box-sizing: border-box;
+}

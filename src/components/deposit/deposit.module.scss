@@ -1,0 +1,36 @@
+.popUp {
+  max-width: 400px;
+}
+
+.formHeading {
+  text-transform: uppercase;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-items: center;
+  justify-content: space-between;
+  margin-top: 0px;
+  padding-top: 12px;
+  align-items: end;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  animation: spin 2s linear infinite;
+  /* Adjust the duration and timing function as needed */
+  margin-top: 0px;
+  padding: 10px 0px;
+}

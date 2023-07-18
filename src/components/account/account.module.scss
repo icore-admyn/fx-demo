@@ -1,0 +1,140 @@
+.popUpCard {
+    padding: 0px !important;
+    min-width: 400px;
+}
+
+.heading {
+    margin: 0px;
+}
+
+.wrapper {
+    min-width: 780px;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 80vh;
+    height: 80vh;
+    box-sizing: border-box;
+}
+
+.head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    gap: 48px;
+    background-color: var(--neutral800);
+    border: 1px solid black;
+    border-top: 0px solid black;
+    border-left: 0px solid black;
+    border-right: 0px solid black;
+    border-bottom: 1px solid var(--neutral600);
+    box-sizing: border-box;
+}
+
+.headingWrapper {
+    box-sizing: border-box;
+}
+
+.heading {}
+
+.currencyWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.text {
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: calc(100% - 77px);
+}
+
+.sidebar {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    box-sizing: border-box;
+    background-color: rgba(11, 16, 27, 0.5);
+    border-right: 1px solid var(--neutral600);
+    padding: 24px;
+}
+
+.tabLink {
+    padding-top: 6px;
+    width: 100px;
+    padding-bottom: 6px;
+}
+
+.logout {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    padding: 6px 0px;
+    border-radius: 4px;
+    background-color: var(--neutral800);
+    margin-top: auto;
+    border: 1px solid var(--neutral600);
+}
+
+.main {
+    width: 80%;
+    padding: 48px;
+    overflow: auto;
+    padding-bottom: 82px;
+}
+
+.form {}
+
+.buttonWrapper {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 0;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    background: var(--neutral700);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.walletWrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    position: relative;
+}
+
+.removeWallet {
+    position: absolute;
+    top: 18px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border-radius: 100%;
+}
+
+.removeWallet::before {
+    content: 'x';
+    margin-top: -3px;
+}
