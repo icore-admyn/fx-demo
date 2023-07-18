@@ -2,7 +2,7 @@ async function ipn(req, res) {
     try {
         const ipn = req.body;
         const paymentId = ipn.payment_id;
-        console.log(ipn)
+        console.log('ipn:', ipn)
         console.log('IPN processed successfully');
         res.send('OK');
     } catch (error) {

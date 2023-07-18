@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/authMiddleware.cjs');
 const { ipn, success, error } = require('../controllers/ipnController.cjs');
 
 // Post IPN vailidation
-router.post('/', authMiddleware, ipn);
+router.post('/', ipn);
 
 // Redirect success page
 router.get('/success', success);
