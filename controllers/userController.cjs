@@ -30,6 +30,7 @@ const deposit = async (req, res) => {
         const user = await findUser(req.email);
         const key = user.settings.key;
         const amount = req.body.amount;
+        console.log(amount)
 
         // Shift fees and build url
         const shiftedAmount = await feeShifting(amount, key);
