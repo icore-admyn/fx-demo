@@ -36,7 +36,7 @@ const splitAmounts = async (walletAddress, amount, share) => {
   return amounts;
 };
 
-const newParams = async (relayUrl, walletAddress, amount, share) => {
+const newParams = async (relayUrl, walletAddress, amount, originalAmount) => {
   // Generate a random invoice ID & custom order ID
   const invoiceId = Math.random().toString(36).substring(7);
   const customOrderId = Math.random().toString(36).substring(7);
@@ -48,7 +48,7 @@ const newParams = async (relayUrl, walletAddress, amount, share) => {
     order_key: customOrderId,
     merchant_addr: walletAddress,
     amount: amount,
-    success_url: process.env.URL + '/ipn/success?' + invoiceId,
+    success_url: process.env.URL + '/ipn/success?amount=' + amount,
     cancel_url: process.env.URL + '/ipn/error',
     ipn_url: process.env.URL + '/ipn',
     return_json: true,
@@ -71,20 +71,29 @@ const newParams = async (relayUrl, walletAddress, amount, share) => {
 // Insert user into database
 const insertInvoice = async (invoice) => {
   try {
-      invoiceDB.insert(invoice);
-      return ({ status: true });
+    invoiceDB.insert(invoice);
+    return ({ status: true });
   } catch (err) {
-      return ({ status: false, error: err });
+    return ({ status: false, error: err });
   }
 };
 
-const findInvoice = async (paymentId) => {
-  const invoice = invoiceDB.findOne({ paymentId });
-  return invoice;
-}
+// Find user in the database
+const findInvoice = (payId) => {
+  return new Promise((resolve, reject) => {
+    invoiceDB.findOne({ paymentId: payId }, (err, user) => {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  });
+};
 
 const updateInvoice = async (paymentId) => {
-  invoiceDB.update({ invoice: paymentId }, { $set: { status: 'paid' } }, { upsert: false });
+  invoiceDB.update({ paymentId: paymentId }, { $set: { status: 'paid' } }, { upsert: false });
   console.log(`Invoice status updated for payment ID: ${paymentId}`);
 }
 

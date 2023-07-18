@@ -133,7 +133,7 @@ export const Account = ({
                                 Main Balance:<strong>${userSettings.mainBalance}</strong>
                             </p>
                             <p className={styles.text}>
-                                Bonus Balance:<strong>${userSettings.mainBalance}</strong>
+                                Bonus Balance:<strong>${userSettings.bonusBalance}</strong>
                             </p>
                         </div>
                     </div>

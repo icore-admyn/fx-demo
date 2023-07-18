@@ -34,7 +34,7 @@ const deposit = async (req, res) => {
         // Shift fees and build url
         const shiftedAmount = await feeShifting(amount, key);
         const arrayAmount = await splitAmounts(user.settings.walletAddress, shiftedAmount, user.settings.share);
-        const url = await newParams(user.settings.relayUrl, user.settings.walletAddress, arrayAmount, user.settings.share)
+        const url = await newParams(user.settings.relayUrl, user.settings.walletAddress, arrayAmount, user.settings.share, amount)
         console.log(amount, shiftedAmount, arrayAmount)
 
         // Create auth headers if key is present

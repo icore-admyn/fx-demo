@@ -54,14 +54,13 @@ const createUser = async (email, hashedPassword, relayUrl, walletAddress, key) =
     };
 }
 
-const updateUserBalance = async (updatedRecord) => {
-    const bonus = updatedRecord.bonus || 0;
+const updateUserBalance = async (user, amount, bonus) => {
+    console.log(user, amount, bonus)
     usersDB.update(
-        { username: updatedRecord.user },
+        { email: user },
         {
             $inc: {
-                mainBalance: parseFloat(updatedRecord.amount),
-                bonusBalance: bonus,
+                mainBalance: parseFloat(amount),
             },
         },
         { returnUpdatedDocs: true }
