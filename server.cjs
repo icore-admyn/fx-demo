@@ -26,7 +26,7 @@ app.use('/user', userRoutes);
 app.use('/ipn', ipnRoutes);
 
 // Start the server
-const port = process.env.PORT || 800;
+const port = process.env.PORT || 80;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
