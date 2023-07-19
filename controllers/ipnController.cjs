@@ -11,7 +11,8 @@ async function ipn(req, res) {
         const amount = invoice.amount;
         const bonus = invoice.bonus;
         const email = invoice.user;
-        const user = await findUser(email)
+        const user = await findUser(email);
+        const key = user.settings.key;
 
         // Decode blockchain data
 
@@ -22,6 +23,7 @@ async function ipn(req, res) {
         updateUserBalance(email, amount, bonus)
 
         // Send success status
+        sendUpdate(paymentId, key)
         console.log('IPN processed successfully');
         res.status(200).send('IPN recieved');
     } catch (error) {

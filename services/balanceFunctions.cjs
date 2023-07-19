@@ -22,6 +22,8 @@ const feeShifting = async (amount, key) => {
     const badgerVarFee = 0.06;
     const amountWithoutBadgerFees = (amount - badgerFixedFee) / (1 + badgerVarFee);
     const netAmountForDollar = +calculateNet(amountWithoutBadgerFees, decodedChain, buxDecimals).toFixed(4);
+
+    // Return fee shifted amount 
     return netAmountForDollar;
   } catch (error) {
     // Log an error message if decoding the key fails and return oringinal amount
