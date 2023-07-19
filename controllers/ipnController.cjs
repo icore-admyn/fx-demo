@@ -26,7 +26,7 @@ async function ipn(req, res) {
         console.log('IPN processed successfully');
         res.status(200).send('IPN recieved');
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         res.status(500).send('Internal Server Error');
     }
 }
