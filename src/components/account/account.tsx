@@ -17,7 +17,7 @@ export const Account = ({
     setDepositPopUp,
     userSettings,
     setUserSettings,
-    setIsLoggedIn
+    setIsLoggedIn,
 }: AccountProps) => {
     const [editedSettings, setEditedSettings] = useState(userSettings.settings);
     const [shareError, setShareError] = useState('');

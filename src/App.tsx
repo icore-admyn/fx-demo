@@ -19,6 +19,7 @@ function App() {
     const [accountPopUp, setAccountPopUp] = useState(false);
     const [depositPopUp, setDepositPopUp] = useState(false);
     const [checkoutPopUp, setCheckoutPopUp] = useState(false);
+    const [forceUpdate, setForceUpdate] = useState(false);
     const [paymentUrl, setPaymentUrl] = useState('');
     const [userSettings, setUserSettings] = useState({});
     const totalBalance = mainBalance + bonusBalance;
@@ -45,7 +46,7 @@ function App() {
                     setIsLoggedIn(false);
                 });
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, forceUpdate]);
 
     // Disable scroll on popup
     useEffect(() => {
@@ -107,6 +108,7 @@ function App() {
                 <Checkout
                     setCheckoutPopUp={setCheckoutPopUp}
                     url={paymentUrl}
+                    setForceUpdate={setForceUpdate}
                 />
             }
             <Footer />

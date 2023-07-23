@@ -6,12 +6,13 @@ import globalStyles from '../../css/global.module.scss';
 export interface CheckoutProps {
     setCheckoutPopUp: (value: boolean) => void;
     url: string;
+    setForceUpdate: any
 }
 
-export const Checkout = ({ setCheckoutPopUp, url }: CheckoutProps) => {
+export const Checkout = ({ setCheckoutPopUp, url, setForceUpdate }: CheckoutProps) => {
     function HandlePopUp() {
+        setForceUpdate((prev: any) => !prev);
         setCheckoutPopUp(false);
-        window.location.reload()
     }
 
     const paymentId: any = url.split('/').pop();

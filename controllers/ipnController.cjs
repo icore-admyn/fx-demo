@@ -46,3 +46,25 @@ module.exports = {
     success,
     error
 };
+
+
+async function ipn(req, res) {
+    try {
+        // Get invoice data
+        const ipn = req.body;
+        const paymentId = ipn.payment_id;
+
+        // Decode blockchain data...
+
+        // Compare invoice data...
+
+        // Update database with successful payment...
+
+        // Send success status
+        console.log('IPN processed successfully');
+        res.status(200).send('IPN recieved');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
