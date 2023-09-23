@@ -83,7 +83,7 @@ export const Footer = ({ className }: FooterProps) => {
                 </span>
                 <br />
                 <br />
-                Copyright © 2020 iCore Pay. All rights reserved.
+                Copyright © 2023 iCore Pay. All rights reserved.
             </div>
         </footer>
     );
