@@ -10,6 +10,7 @@ export interface AccountProps {
     userSettings: any;
     setUserSettings: (settings: any) => void;
     setIsLoggedIn: (value: boolean) => void;
+    setForceUpdate: any;
 }
 
 export const Account = ({
@@ -18,11 +19,15 @@ export const Account = ({
     userSettings,
     setUserSettings,
     setIsLoggedIn,
+    setForceUpdate
 }: AccountProps) => {
     const [editedSettings, setEditedSettings] = useState(userSettings.settings);
+    const [mainBalance, setMainBalance] = useState(userSettings.mainBalance);
+    const [bonusBalance, setBonusBalance] = useState(userSettings.bonusBalance);
     const [shareError, setShareError] = useState('');
-    
+
     function handlePopUp() {
+        setForceUpdate((prev: any) => !prev);
         setEditedSettings(userSettings);
         setAccountPopUp(false);
     }
@@ -49,6 +54,8 @@ export const Account = ({
         }
         const submitSettings = {
             ...userSettings,
+            mainBalance: mainBalance,
+            bonusBalance: bonusBalance,
             settings: editedSettings
         }
         try {
@@ -101,6 +108,12 @@ export const Account = ({
         }));
     }
 
+    function handleReset(event: any) {
+        event.preventDefault();
+        setMainBalance(0);
+        setBonusBalance(0);
+    }
+
 
     function handleRemoveWallet(event: any, index: any) {
         event.preventDefault();
@@ -130,10 +143,10 @@ export const Account = ({
                         </div>
                         <div className={styles.currencyWrapper}>
                             <p className={styles.text}>
-                                Main Balance:<strong>${userSettings.mainBalance}</strong>
+                                Main Balance:<strong>${mainBalance}</strong>
                             </p>
                             <p className={styles.text}>
-                                Bonus Balance:<strong>${userSettings.bonusBalance}</strong>
+                                Bonus Balance:<strong>${bonusBalance}</strong>
                             </p>
                         </div>
                     </div>
@@ -220,14 +233,22 @@ export const Account = ({
                                     )}
                                     {shareError && <p className={styles.error}>{shareError}</p>}
                                     <div className={styles.buttonWrapper}>
-                                        <div>{editedSettings.walletAddress.length < 5 && (
+                                        <div>
+                                            {editedSettings.walletAddress.length < 5 && (
+                                                <button className={classnames(
+                                                    globalStyles.buttonSmall,
+                                                    globalStyles.secondaryButton,
+                                                )} onClick={(event) => handleAddWallet(event)}>
+                                                    Add Wallet
+                                                </button>
+                                            )}
                                             <button className={classnames(
                                                 globalStyles.buttonSmall,
                                                 globalStyles.secondaryButton,
-                                            )} onClick={(event) => handleAddWallet(event)}>
-                                                Add Wallet
+                                            )} onClick={(event) => handleReset(event)}>
+                                                Reset Balance
                                             </button>
-                                        )}</div>
+                                        </div>
                                         <button type="submit" className={globalStyles.buttonSmall}>
                                             Save Changes
                                         </button>

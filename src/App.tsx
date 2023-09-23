@@ -93,6 +93,7 @@ function App() {
                     userSettings={userSettings}
                     setUserSettings={setUserSettings}
                     setIsLoggedIn={setIsLoggedIn}
+                    setForceUpdate={setForceUpdate}
                 />
             }
             {
