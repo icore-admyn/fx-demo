@@ -18,8 +18,8 @@ const feeShifting = async (amount, key) => {
     const decoded = jwt.decode(key);
     const decodedChain = decodeSubjectChain(decoded.sub, ecdsa.verify);
     const buxDecimals = 4;
-    const badgerFixedFee = 0.0;
-    const badgerVarFee = 0.05;
+    const badgerFixedFee = process.env.BUXFIXED || 0.5;
+    const badgerVarFee = process.env.BUXVAR || 0.06;
     const amountWithoutBadgerFees = (amount - badgerFixedFee) / (1 + badgerVarFee);
     const netAmountForDollar = +calculateNet(amountWithoutBadgerFees, decodedChain, buxDecimals).toFixed(4);
 
