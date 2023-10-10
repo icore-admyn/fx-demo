@@ -40,11 +40,18 @@ export const Account = ({
 
     function handleInputChange(event: any) {
         const { name, value } = event.target;
+        
+        // Check if value starts with 'https://' or 'http://'
+        const sanitizedValue = value.startsWith('https://') || value.startsWith('http://')
+            ? value.slice(value.indexOf('://') + 3) // Remove it
+            : value;
+    
         setEditedSettings((prevSettings: any) => ({
             ...prevSettings,
-            [name]: value
+            [name]: sanitizedValue
         }));
     }
+    
 
     async function handleSubmit(event: any) {
         event.preventDefault();
