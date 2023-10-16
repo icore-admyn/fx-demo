@@ -1,6 +1,7 @@
 .root {
   padding: 40px;
 }
+
 .sliderWrapper {
   display: flex;
   grid-template-columns: 3fr 1fr 1fr;
@@ -13,6 +14,7 @@
   gap: 24px;
   justify-content: space-between;
 }
+
 .largerSlider {
   grid-column-start: 1;
   grid-column-end: 2;
@@ -32,6 +34,7 @@
   justify-content: center;
   justify-items: center;
 }
+
 .smallSlider {
   grid-column-start: 3;
   grid-column-end: 3;
@@ -49,29 +52,35 @@
   border-radius: 8px;
   overflow: hidden;
 }
+
 .sliderHeading {
   margin: 0px;
   font-size: 50px;
   font-size: 28px;
   text-transform: uppercase;
 }
+
 .sliderText {
   margin: 0px;
 }
+
 .sliderDate {
   margin: 0px;
   font-weight: 600;
   text-transform: none;
 }
-.slideContainer {
-}
+
+.slideContainer {}
+
 .sliderHeaderWrapper {
   margin-bottom: 10px;
 }
+
 .sliderContent {
   padding-bottom: 0px;
   margin-bottom: 20px;
 }
+
 .sliderSpanTop {
   display: flex;
   align-items: center;
@@ -80,11 +89,13 @@
   font-size: 20px;
   margin: 0px 0px -6px;
 }
+
 .sliderSpanBottom {
   display: flex;
   font-size: 16px;
   margin-top: -5px;
 }
+
 .prizeMoney {
   font-weight: 600;
   display: flex;
@@ -92,4 +103,27 @@
   justify-content: center;
   font-size: 24px;
   line-height: 1;
+}
+
+
+@media (max-width: 768px) {
+  .root {
+    padding: 10px;
+  }
+
+  .sliderWrapper {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  .largerSlider{
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .smallSlider {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }

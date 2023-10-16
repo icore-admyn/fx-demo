@@ -9,13 +9,15 @@ export interface DepositProps {
     setDepositPopUp: (value: boolean) => void;
     setCheckoutPopUp: (value: boolean) => void;
     setPaymentUrl: (value: string) => void;
+    setQrCodePopUp: (value: boolean) => void;
 }
 
-export const Deposit = ({ setDepositPopUp, setCheckoutPopUp, setPaymentUrl }: DepositProps) => {
+export const Deposit = ({ setDepositPopUp, setCheckoutPopUp, setPaymentUrl, setQrCodePopUp }: DepositProps) => {
     const [isLoading, setIsLoading] = useState(false)
     const [formData, setFormData] = useState({
         amount: 20,
     });
+    const [imageUrl, setImageUrl] = useState('dist/assets/bg-6e73c881.jpg')
 
     function handlePopUp() {
         setDepositPopUp(false);
@@ -26,7 +28,26 @@ export const Deposit = ({ setDepositPopUp, setCheckoutPopUp, setPaymentUrl }: De
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleQrCode = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true)
+        try {
+            const token = localStorage.getItem('token');
+            const headers = { Authorization: `Bearer ${token}` };
+            const response = await axios.post('/user/deposit', formData, { headers });
+            const { payUrl } = response.data;
+            setPaymentUrl(payUrl);
+            setQrCodePopUp(true);
+            console.log(payUrl);
+            handlePopUp();
+            setIsLoading(false)
+        } catch (error) {
+            console.error(error);
+            setIsLoading(false)
+        }
+    };
+
+    const handleDeposit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true)
         try {
@@ -48,11 +69,11 @@ export const Deposit = ({ setDepositPopUp, setCheckoutPopUp, setPaymentUrl }: De
     return (
         <section className={globalStyles.popUpWrapper}>
             <div className={globalStyles.popUpBackground} onClick={handlePopUp} />
-            <div className={classNames(globalStyles.popUpCard, styles.popUp, globalStyles.test)}>
+            <div className={classNames(globalStyles.popUpCard, styles.popUp, globalStyles.imageUrl)}>
                 <button className={globalStyles.popUpClose} onClick={handlePopUp} />
                 <h2 className={styles.formHeading}>Great choice! 🎉</h2>
                 <p>Enter how much you would like to deposit.</p>
-                <form className={globalStyles.form} onSubmit={handleSubmit}>
+                <form className={globalStyles.form}>
                     <div>
                         <div className={globalStyles.inputWrapper}>
                             <label>Deposit:</label>
@@ -70,11 +91,27 @@ export const Deposit = ({ setDepositPopUp, setCheckoutPopUp, setPaymentUrl }: De
                             {isLoading ? (
                                 <Loading className={styles.loading} />
                             ) : (
-                                <button type="submit" className={globalStyles.buttonSmall}>
-                                    Deposit
-                                </button>
+                                <div className={styles.buttonWrapper}>
+                                    <button
+                                        type="submit"
+                                        onClick={handleQrCode}
+                                        className={classNames(
+                                            globalStyles.buttonSmall,
+                                            globalStyles.secondaryButton
+                                        )}>
+                                        QR Code
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        onClick={handleDeposit}
+                                        className={globalStyles.buttonSmall}
+                                    >
+                                        Deposit
+                                    </button>
+                                </div>
                             )}
                         </div>
+                        <img src={imageUrl} alt='imageUrl' />
                     </div>
                 </form>
                 <p>

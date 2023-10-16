@@ -1,12 +1,32 @@
 .popUpCard {
-    padding: 0px;
-    min-width: 500px;
-    background-color: white;
-    border-radius: 9px;
+  padding: 0px;
+  min-width: 500px;
+  background-color: white;
+  border-radius: 9px;
 }
 
 .checkout {
-    height: calc(90vh + 83px);
+  height: calc(90vh + 83px);
+  margin-bottom: -10px;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.checkoutWrapper {
+  height: 90vh;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+@media (max-width: 768px) {
+  .popUpCard {
+    min-width: 90%;
+  }
+
+  .checkout {
+    height: calc(80vh + 83px);
     margin-bottom: -10px;
     border: none;
     border-radius: 8px;
@@ -14,7 +34,7 @@
   }
 
   .checkoutWrapper {
-    height: 90vh;
+    height: 80vh;
     border-radius: 8px;
-    overflow: hidden;
   }
+}

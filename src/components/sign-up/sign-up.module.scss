@@ -19,3 +19,18 @@
   max-height: 100%;
   box-sizing: border-box;
 }
+
+@media (max-width: 768px) {
+  .popUp {
+    max-width: none;
+    width: 80vw;
+    box-sizing: border-box;
+  }
+
+  .form {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 100%;
+    box-sizing: border-box;
+  }
+}

@@ -18,11 +18,9 @@ const feeShifting = async (amount, key) => {
     const decoded = jwt.decode(key);
     const decodedChain = decodeSubjectChain(decoded.sub, ecdsa.verify);
     const buxDecimals = 4;
-    const badgerFixedFee = process.env.BUX_FIXED || 0.0;
-    const badgerVarFee = process.env.BUX_VAR || 0.05;
-    const amountWithoutBadgerFees = (amount - badgerFixedFee) / (1 + badgerVarFee);
-    const netAmountForDollar = +calculateNet(amountWithoutBadgerFees, decodedChain, buxDecimals).toFixed(4);
-
+    const badgerVarFee = 0.05;
+    const amountWithoutBadgerFees = amount / (1 + badgerVarFee);
+    const netAmountForDollar = +calculateNet(amountWithoutBadgerFees, decodedChain, buxDecimals).toFixed(buxDecimals);
     // Return fee shifted amount 
     return netAmountForDollar;
   } catch (error) {
@@ -46,6 +44,7 @@ const newParams = async (relayUrl, walletAddress, amount, originalAmount) => {
   // Set up url params
   const params = {
     merchant_name: 'iCore Pay',
+    offer_name: 'Deposit',
     invoice: invoiceId,
     order_key: customOrderId,
     merchant_addr: walletAddress,

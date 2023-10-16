@@ -7,6 +7,7 @@ import { SignUp } from './components/sign-up/sign-up';
 import { Account } from './components/account/account';
 import { Deposit } from './components/deposit/deposit';
 import { Checkout } from './components/checkout/checkout';
+import QrCode from './components/qr-code/qr-code';
 import globalStyles from './css/global.module.scss'
 import axios from 'axios';
 
@@ -19,6 +20,7 @@ function App() {
     const [accountPopUp, setAccountPopUp] = useState(false);
     const [depositPopUp, setDepositPopUp] = useState(false);
     const [checkoutPopUp, setCheckoutPopUp] = useState(false);
+    const [qrCodePopUp, setQrCodePopUp] = useState(false);
     const [forceUpdate, setForceUpdate] = useState(false);
     const [paymentUrl, setPaymentUrl] = useState('');
     const [userSettings, setUserSettings] = useState({});
@@ -102,12 +104,21 @@ function App() {
                     setDepositPopUp={setDepositPopUp}
                     setCheckoutPopUp={setCheckoutPopUp}
                     setPaymentUrl={setPaymentUrl}
+                    setQrCodePopUp={setQrCodePopUp}
                 />
             }
             {
                 isLoggedIn && checkoutPopUp &&
                 <Checkout
                     setCheckoutPopUp={setCheckoutPopUp}
+                    url={paymentUrl}
+                    setForceUpdate={setForceUpdate}
+                />
+            }
+            {
+                isLoggedIn && qrCodePopUp &&
+                <QrCode
+                    setQrCodePopUp={setQrCodePopUp}
                     url={paymentUrl}
                     setForceUpdate={setForceUpdate}
                 />

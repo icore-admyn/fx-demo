@@ -13,3 +13,11 @@
     margin-top: 0px;
     padding-top: 12px;
 }
+
+@media (max-width: 768px) {
+    .popUp {
+      max-width: none;
+      width: 80vw;
+      box-sizing: border-box;
+    }
+  }

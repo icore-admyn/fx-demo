@@ -13,6 +13,7 @@
   margin-top: 0px;
   padding-top: 12px;
   align-items: end;
+  gap: 20px;
 }
 
 @keyframes spin {
@@ -33,4 +34,14 @@
   /* Adjust the duration and timing function as needed */
   margin-top: 0px;
   padding: 10px 0px;
+}
+
+
+
+@media (max-width: 768px) {
+  .popUp {
+    max-width: none;
+    width: 80vw;
+    box-sizing: border-box;
+  }
 }

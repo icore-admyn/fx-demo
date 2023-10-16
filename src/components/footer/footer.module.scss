@@ -46,3 +46,16 @@
 .footerLink:hover {
   color: var(--secondary);
 }
+
+
+@media (max-width: 768px) {
+  .footerTop {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: start;
+    justify-items: center;
+    justify-content: space-around;
+  }
+  
+}

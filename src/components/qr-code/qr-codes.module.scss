@@ -1,0 +1,28 @@
+.popUpCard {
+  z-index: 2;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: var(--neutral700);
+  border: 1px solid var(--neutral600);
+  position: relative;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.popUpCard {
+  padding: 0px;
+  background-color: white;
+  border-radius: 9px;
+}
+
+@media (max-width: 768px) {
+  .popUpCard {
+    z-index: 2;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--neutral700);
+    border: 1px solid var(--neutral600);
+    position: relative;
+    animation: fadeIn 0.2s ease-in;
+    width: auto;
+  }
+}

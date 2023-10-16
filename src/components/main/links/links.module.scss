@@ -21,3 +21,12 @@
   margin: 12px 0px 0px;
   font-weight: 400;
 }
+
+
+@media (max-width: 768px) {
+  .linksWrapper{
+    flex-direction: column;
+    padding: 0px 10px;
+    gap: 10px;
+  }
+}
