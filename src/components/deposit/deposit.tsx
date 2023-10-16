@@ -17,7 +17,6 @@ export const Deposit = ({ setDepositPopUp, setCheckoutPopUp, setPaymentUrl, setQ
     const [formData, setFormData] = useState({
         amount: 20,
     });
-    const [imageUrl, setImageUrl] = useState('dist/assets/bg-6e73c881.jpg')
 
     function handlePopUp() {
         setDepositPopUp(false);
@@ -111,7 +110,6 @@ export const Deposit = ({ setDepositPopUp, setCheckoutPopUp, setPaymentUrl, setQ
                                 </div>
                             )}
                         </div>
-                        <img src={imageUrl} alt='imageUrl' />
                     </div>
                 </form>
                 <p>
