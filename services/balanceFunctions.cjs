@@ -44,7 +44,6 @@ const newParams = async (relayUrl, walletAddress, amount, originalAmount) => {
   // Set up url params
   const params = {
     merchant_name: 'iCore Pay',
-    offer_name: 'Deposit',
     invoice: invoiceId,
     order_key: customOrderId,
     merchant_addr: walletAddress,
