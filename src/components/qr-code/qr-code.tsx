@@ -12,6 +12,13 @@ export interface QrCodeProps {
 }
 
 const QrCode: React.FC<QrCodeProps> = ({ setQrCodePopUp, url, setForceUpdate }) => {
+    const [contentState, setContentState] = useState(() => {
+        return (
+            <div className={styles.qrcode}>
+                <QRCode value={url} />
+            </div>
+        )
+    });
 
     const paymentId: any = url.split('/').pop();
     const webSocketUrl = url.replace("http", "ws");
@@ -26,8 +33,15 @@ const QrCode: React.FC<QrCodeProps> = ({ setQrCodePopUp, url, setForceUpdate }) 
         const response = await axios.get(url, { headers });
         const data = response.data;
         if (data.status === 'paid') {
-            alert('Payment received');
-        } else{
+            setContentState(() => {
+                return (
+                    <div className={styles.success}>
+                        <h2>🎉 Deposit Successfull 🎉</h2>
+                        <p>You can now close this popup.</p>
+                    </div>
+                )
+            })
+        } else {
             alert('There was an error with the payment');
         }
         console.log(data)
@@ -66,8 +80,8 @@ const QrCode: React.FC<QrCodeProps> = ({ setQrCodePopUp, url, setForceUpdate }) 
             <div onClick={HandleClose} className={globalStyles.popUpBackground} />
             <div className={classnames(styles.popUpCard)}>
                 <button onClick={HandleClose} className={globalStyles.popUpClose} />
-                <div className={styles.checkoutWrapper}>
-                    <QRCode value={url} />
+                <div>
+                    {contentState}
                 </div>
                 <div></div>
             </div>

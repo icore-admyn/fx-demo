@@ -8,14 +8,19 @@
   animation: fadeIn 0.2s ease-in;
 }
 
-.checkoutWrapper {
-  padding: 10px;
-}
-
 .popUpCard {
   padding: 0px;
-  background-color: white;
   border-radius: 9px;
+}
+
+.qrcode {
+  background-color: white;
+  padding: 20px;
+}
+
+.success {
+  padding: 40px 80px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
