@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "start": "nodemon server.cjs",
-    "bootup":"tsc && vite build && nodemon server.cjs"
+    "bootup": "tsc && vite build && nodemon server.cjs"
   },
   "dependencies": {
     "axios": "^1.4.0",
@@ -21,6 +21,8 @@
     "jsonwebtoken": "^9.0.1",
     "nedb": "^1.8.0",
     "nodemon": "^3.0.1",
+    "qrcode": "^1.5.3",
+    "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "relay-jwt": "^1.1.2",
