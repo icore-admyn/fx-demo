@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import styles from './qr-codes.module.scss';
 import globalStyles from '../../css/global.module.scss';
-import axios from 'axios';
+import QRCode from 'qrcode.react';
 
 export interface QrCodeProps {
     setQrCodePopUp: (value: boolean) => void;
@@ -11,19 +10,6 @@ export interface QrCodeProps {
 }
 
 const QrCode = ({ setQrCodePopUp, url, setForceUpdate }: QrCodeProps) => {
-    const [imageUrl, setImageUrl] = useState('');
-
-    useEffect(() => {
-        const fetchImage = async () => {
-            const headers = { Accept: 'image/png' };
-            const response = await axios.get(url, { headers, responseType: 'blob' });
-            const data = response.data;
-            const image = URL.createObjectURL(data);
-            setImageUrl(image);
-        };
-
-        fetchImage();
-    }, [url]);
 
     function HandlePopUp() {
         setForceUpdate((prev: any) => !prev);
@@ -36,7 +22,7 @@ const QrCode = ({ setQrCodePopUp, url, setForceUpdate }: QrCodeProps) => {
             <div className={classnames(styles.popUpCard)}>
                 <button onClick={HandlePopUp} className={globalStyles.popUpClose} />
                 <div className={styles.checkoutWrapper}>
-                    <img src={imageUrl} alt='QR-Code' />
+                    <QRCode value={url} />
                 </div>
                 <div></div>
             </div>
