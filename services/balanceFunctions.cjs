@@ -9,7 +9,35 @@ require('dotenv').config()
 const algorithm = 'ES256';
 const ecdsa = jwa(algorithm);
 
+const getMerchantAmount = (target, rates, decimals = 1) => {
+  const estimatedFeeFactor = rates.reduce((acc, rate) => acc * (1 + rate), 1) * 1.05;
+  console.log("estimatedFeeFactor", estimatedFeeFactor);
+  const rangeStart = +(target / (estimatedFeeFactor + 0.01)).toFixed(4);
+  const rangeEnd = +(target / (estimatedFeeFactor - 0.01)).toFixed(4);
+  console.log("range", rangeStart, rangeEnd);
+  const step = 10 ** (-decimals);
+  console.log("step", step);
+  let merchantAmount;
+  for (let m = rangeStart; m < rangeEnd; m = +(m + step).toFixed(4)) {
+    const tokenAmount = rates.reduce((accumulator, rate) => +(accumulator * (1 + rate)).toFixed(4), m);
+    const purchaseTokenAmount = +(Math.ceil(tokenAmount * 100) / 100).toFixed(2);
+    const totalAmount = +(Number((purchaseTokenAmount * 1.01).toFixed(2)) + Number((Number((purchaseTokenAmount * 1.01).toFixed(2)) * 0.04).toFixed(2))).toFixed(2);
+    console.log("m", m, "TA", totalAmount);
+
+    if (totalAmount === target) {
+      merchantAmount = m;
+      break;
+    }
+  }
+
+  console.log("merchantAmount", merchantAmount);
+
+  return merchantAmount || getMerchantAmount(target, rates, decimals + 1);
+}
+
 const feeShifting = async (amount, key) => {
+  const amountSantized = parseFloat(amount);
+  
   try {
     if (key === undefined) {
       return amount; // If the key is empty, return the original amount
@@ -17,11 +45,16 @@ const feeShifting = async (amount, key) => {
     // Decode the provided key
     const decoded = jwt.decode(key);
     const decodedChain = decodeSubjectChain(decoded.sub, ecdsa.verify);
-    const buxDecimals = 4;
-    const badgerVarFee = 0.05;
-    const amountWithoutBadgerFees = amount / (1 + badgerVarFee);
-    const netAmountForDollar = +calculateNet(amountWithoutBadgerFees, decodedChain, buxDecimals).toFixed(buxDecimals);
-    // Return fee shifted amount 
+    const getRates = () => {
+      const array = [];
+      decodedChain.forEach((obj) => {
+        array.push(obj.amount / 1000);
+      })
+      return array;
+    };
+    const rates = getRates();
+
+    const netAmountForDollar = getMerchantAmount(amountSantized, rates);
     return netAmountForDollar;
   } catch (error) {
     // Log an error message if decoding the key fails and return oringinal amount
@@ -29,6 +62,7 @@ const feeShifting = async (amount, key) => {
     return amount;
   }
 };
+
 
 const splitAmounts = async (walletAddress, amount, share) => {
   const totalShare = share.reduce((total, value) => total + value, 0);
