@@ -5,7 +5,7 @@
     display: flex;
     align-items: stretch;
     box-sizing: border-box;
-    background-image: linear-gradient(to bottom, transparent, var(--neutral800)), url('../../../assets/bgs/bg.jpg');
+    background-image: linear-gradient(to bottom, transparent, var(--neutral800)), linear-gradient(to bottom, transparent, var(--neutral800)), linear-gradient(to bottom, transparent, var(--neutral800)), url('../../../assets/bgs/bg.jpg');
     background-size: cover;
     background-position: center;
     align-content: center;

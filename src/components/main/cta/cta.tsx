@@ -10,14 +10,13 @@ export const CTA = ({ className }: SignUpCTAProps) => {
         <section className={classNames(styles.root, className)}>
             <div className={styles.ctaWrapper}>
                 <div className={styles.cta}>
-                    <p className={styles.subText}>Welcome to our casino!</p>
+                    <p className={styles.subText}>Start Trading Today!</p>
                     <h2 className={styles.heading}>Join now!</h2>
-                    <h3 className={styles.subHeading}>Claim your bonus $50</h3>
+                    <h3 className={styles.subHeading}>Start with $5</h3>
                     <p className={styles.description}>
-                        Sign up and deposit $20 to unlock an incredible $50 bonus, giving you a
-                        total of $70 to play with. With our vast selection of games and thrilling
-                        rewards, the possibilities are endless. Don't miss out on this fantastic
-                        opportunity to boost your chances of winning big.
+                        Increase Your Trading Power by up to 1.5 times and 
+                        withdraw your profits anytime.
+                        Get an additional 10% Credit Deposit Bonus for all your subsequent deposits!
                     </p>
                     <button>Claim Now!</button>
                 </div>

@@ -159,9 +159,6 @@ export const Account = ({
                     </div>
                     <div className={styles.body}>
                         <div className={styles.sidebar}>
-                            <div className={styles.tabLink}>Wallet</div>
-                            <div className={styles.tabLink}>Promotions</div>
-                            <div className={styles.tabLink}>Settings</div>
                             <button className={styles.logout} onClick={handleLogout}>
                                 Logout
                             </button>

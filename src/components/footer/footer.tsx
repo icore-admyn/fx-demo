@@ -21,11 +21,6 @@ export const Footer = ({ className }: FooterProps) => {
                         </li>
                         <li>
                             <a href="#" className={styles.footerLink}>
-                                Responsible Gaming
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className={styles.footerLink}>
                                 Privacy Policy
                             </a>
                         </li>
@@ -41,45 +36,10 @@ export const Footer = ({ className }: FooterProps) => {
                         </li>
                     </ul>
                 </div>
-                <div>
-                    <h3 className={styles.footerHeading}>Products</h3>
-                    <ul role="list" className={styles.footerList}>
-                        <li>
-                            <a href="#" className={styles.footerLink}>
-                                Poker
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className={styles.footerLink}>
-                                Casino
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className={styles.footerLink}>
-                                Sportsbook
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className={styles.footerLink}>
-                                E-Sports
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className={styles.footerLink}>
-                                Virtual
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className={styles.footerLink}>
-                                Tournaments
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div className={styles.footerBottom}>
                 <span>
-                    <strong>iCore Pay</strong> is not a real casino
+                    <strong>iCore Pay</strong> is not a real FX platform
                 </span>
                 <br />
                 <br />
