@@ -47,12 +47,6 @@ export const Nav: React.FC<NavProps> = ({
                 <img src={Logo} alt="iCore Logo" className={styles.logo} />
             </a>
             <ul className={styles.menu}>
-                <li className={styles.navLink}>Casino</li>
-                <li className={styles.navLink}>Poker</li>
-                <li className={styles.navLink}>Sportsbook</li>
-                <li className={styles.navLink}>eSports</li>
-                <li className={styles.navLink}>Virtual</li>
-                <li className={styles.navLink}>Tournaments</li>
             </ul>
             {isLoggedIn ? (
                 <div className={styles.loggedInWrapper}>
